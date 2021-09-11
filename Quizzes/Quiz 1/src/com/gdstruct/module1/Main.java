@@ -20,8 +20,9 @@ public class Main {
         System.out.println("Before sort: ");
         printArrayElements(numbers);
 
-        bubbleSort(numbers);
-        selectionSort(numbers);
+        //bubbleSort(numbers);
+        selectionSortByLargest(numbers);
+        //selectionSortBySmallest(numbers);
 
         System.out.println("\n\nAfter sort: ");
         printArrayElements(numbers);
@@ -42,8 +43,27 @@ public class Main {
             }
         }
     }
+    private static void selectionSortByLargest(int[] arr)
+    {
+        for (int lastSortedIndex = 0; lastSortedIndex < arr.length; lastSortedIndex++)
+        {
+            int largestIndex = lastSortedIndex;
 
-    private static void selectionSort(int[] arr)
+            for (int i = lastSortedIndex; i < arr.length; i++)
+            {
+                if (arr[i] > arr[largestIndex])
+                {
+                    largestIndex = i;
+                }
+            }
+
+            int temp = arr[lastSortedIndex];
+            arr[lastSortedIndex] = arr[largestIndex];
+            arr[largestIndex] = temp;
+        }
+    }
+
+    private static void selectionSortBySmallest(int[] arr)
     {
         for (int lastSortedIndex = arr.length - 1; lastSortedIndex > 0; lastSortedIndex--)
         {
