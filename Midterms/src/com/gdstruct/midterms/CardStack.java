@@ -42,7 +42,7 @@ public class CardStack {
         ListIterator<Card> iterator =  stack.listIterator();
         while (iterator.hasNext())
         {
-            System.out.println(iterator.next());
+            System.out.print(iterator.next());
         }
     }
 }

@@ -12,7 +12,7 @@ public class Main {
     {
         CardStack playerDeck = new CardStack();
         CardStack discardPile = new CardStack();
-        LinkedList<Card> hand = new LinkedList<>();
+        CardStack hand = new CardStack();
 
         createDeck(playerDeck);
 
@@ -24,7 +24,8 @@ public class Main {
 
             System.out.println("Number of cards in Player Deck:" + playerDeck.getSize());
             System.out.println("Number of cards in Discard Pile:" + discardPile.getSize());
-            System.out.println("Cards at hand: " + hand.toString());
+            System.out.print("Cards at hand: ");
+            hand.printStack();
             pause.nextLine();
         }
         System.out.println("There are no more cards in Player Deck");
@@ -47,7 +48,7 @@ public class Main {
     }
 
     //get card from player deck or discard pile
-    public static void getCard(CardStack deck, LinkedList<Card> hand, int amount)
+    public static void getCard(CardStack deck, CardStack hand, int amount)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -57,13 +58,12 @@ public class Main {
                 break;
             }
 
-            hand.addFirst(deck.peek());
-            deck.pop();
+            hand.push(deck.pop());
         }
     }
 
     //put card/s in the discard pile
-    public static void discard(CardStack pile, LinkedList<Card> hand, int amount)
+    public static void discard(CardStack pile,CardStack hand, int amount)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -72,8 +72,7 @@ public class Main {
                 System.out.println("There are not enough cards at hand... discarding all at hand");
                 break;
             }
-            pile.push(hand.getFirst());
-            hand.removeFirst();
+            pile.push(hand.pop());
         }
     }
 
@@ -86,11 +85,11 @@ public class Main {
         return commands[command];
     }
 
-    public static void act(LinkedList<Card> hand, CardStack deck, CardStack pile)
+    public static void act(CardStack hand, CardStack deck, CardStack pile)
     {
         int amount = random.nextInt(5) + 1;
         Commands command = getCommand();
-        System.out.println("Command: " + command + " " + amount + " cards");
+        System.out.println("\nCommand: " + command + " " + amount + " cards");
         switch(command)
         {
             case Draw:
