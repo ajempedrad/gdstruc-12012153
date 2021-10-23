@@ -1,0 +1,10 @@
+Name: The Kind Gacha Search
+-unsorted
+
+Steps:
+- get random index
+- check if value is the same as the one in that index
+- if not, swap the values of the one at the current index with the one at the end
+- push end forward to exclude the ones that were already checked
+
+(pity system) Time complexity : O(n)
